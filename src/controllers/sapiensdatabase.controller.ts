@@ -6,7 +6,7 @@ class SapiensDatabaseController {
     constructor(app: any) {
         // Define routes
         const router = express.Router();
-        router.post('/sapiens/:table', this.getTableData);
+        router.post('/sapiens/:table', this.getTableData.bind(this));
         // Return routes to app
         app.use(router);
     }
