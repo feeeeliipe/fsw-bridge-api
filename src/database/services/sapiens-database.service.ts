@@ -13,6 +13,13 @@ class SapiensDatabaseService {
         });  
     }
 
+    executeNativeSqlQuery(sql: String): any {
+        let query = knexdb.raw(sql.toString());
+        return query.then((result: any) => {
+            return result;
+        });
+    }
+
 };
 
 export default SapiensDatabaseService;
