@@ -12,15 +12,15 @@ Tem como objetivo executar comandos SQL no banco de dados dos produtos Senior at
 
 ## Funcionalidades
 
-### 1. Consulta de tabelas com filtro 
-### 2. Execução de comandos nativos no banco de dados
+### Consulta de tabelas com filtro 
+### Execução de comandos nativos no banco de dados
 
 ## Configurando a conexão com o banco de dados
 
 ### Requisitos
 Para execução da API é necessário que o servidor tenha o Instant Client do Oracle instalado na versão correta do banco e compativel com a arquitetura do sistema operacional (x32 ou x64). 
 
-O caminho do Instant Cliente deve estar definido nas seguintes variáveis de ambiente:
+O caminho do Instant Client deve estar definido nas seguintes variáveis de ambiente:
 1. PATH
 2. OCI_LIB64 ou OCI_LIB32
 
