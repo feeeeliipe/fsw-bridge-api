@@ -22,9 +22,9 @@ Para execução da API é necessário que o servidor tenha o Instant Client do O
 
 O caminho do Instant Client deve estar definido nas seguintes variáveis de ambiente:
 1. PATH
-2. OCI_LIB64 ou OCI_LIB32
+2. OCI_LIB64 ou OCI_LIB32 (Dependendo da arquitetura do sistema operacional)
 
-### Informações do banco de dados
+### Configurando informações do banco de dados
 
 No arquivo config.ts devem ser definidas as informações para conexão com o banco de dados, onde: 
 1. host - Nome ou IP do servidor do banco de dados
