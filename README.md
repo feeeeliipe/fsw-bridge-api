@@ -14,6 +14,7 @@ Tem como objetivo executar comandos SQL no banco de dados dos produtos Senior at
 
 ### Consulta de tabelas com filtro 
 ### Execução de comandos nativos no banco de dados
+### Execução de serviços SOAP (Senior G5)
 
 ## Configurando a conexão com o banco de dados
 
