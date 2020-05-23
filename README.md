@@ -12,9 +12,17 @@ Tem como objetivo executar comandos SQL no banco de dados dos produtos Senior at
 
 ## Funcionalidades
 
+### Autenticação 
+ - POST (/auth/authenticate)
+
 ### Consulta de tabelas com filtro 
+ - POST (/database/{tablename})
+
 ### Execução de comandos nativos no banco de dados
+ - POST (/database/nativeSQL)
+
 ### Execução de serviços SOAP (Senior G5)
+ - POST (/soap/execute)
 
 ## Configurando a conexão com o banco de dados
 
