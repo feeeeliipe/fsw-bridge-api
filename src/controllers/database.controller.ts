@@ -9,22 +9,20 @@ class DatabaseController {
         router.post('/nativeSQL', this.nativeSql.bind(this));
         router.post('/:table', this.getTableData.bind(this));
         // Return routes to app
-        app.use(router);
+        app.use('/database', router);
     }
     
     // Public methods 
     async getTableData(req: any, res: any) {
         const { table } = req.params;
-        const where = this.handleFilters(req.body.filters);
-        const sapiensdb = new DatabaseService();
-        const queryResult = await sapiensdb.getTableData(table, where);
+        const filters = this.handleFilters(req.body.filters);
+        const queryResult = await DatabaseService.getTableData(table, filters);
         return res.send(queryResult);
     }
 
     async nativeSql(req: any, res: any) {
         const { sql } = req.body;
-        const sapiensdb = new DatabaseService();
-        const queryResult = await sapiensdb.executeNativeSqlQuery(sql);
+        const queryResult = await DatabaseService.executeNativeSqlQuery(sql);
         return res.send(queryResult);
     }
     

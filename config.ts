@@ -9,6 +9,11 @@ const config = {
         password: 'sapiens',
         database: 'XE'
     },
+
+    // Soap services configs
+    soap: {
+        x: 0
+    }
 }
 
 export default config;
