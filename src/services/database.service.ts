@@ -1,6 +1,6 @@
-import knexdb from '../config/database.config';
+import knexdb from '../database/database.config';
 
-class SapiensDatabaseService {
+class DatabaseService {
     
     getTableData(table: any, filters: String[]): any {
         let query = knexdb(table).select('*');
@@ -22,4 +22,4 @@ class SapiensDatabaseService {
 
 };
 
-export default SapiensDatabaseService;
+export default DatabaseService;

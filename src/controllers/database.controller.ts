@@ -1,13 +1,13 @@
 import express from "express";
-import SapiensDatabaseService from "../database/services/sapiens-database.service";
+import DatabaseService from "../services/database.service";
 
-class SapiensDatabaseController {
+class DatabaseController {
 
     constructor(app: any) {
         // Define routes
         const router = express.Router();
-        router.post('/sapiens/nativeSQL', this.nativeSql.bind(this));
-        router.post('/sapiens/:table', this.getTableData.bind(this));
+        router.post('/nativeSQL', this.nativeSql.bind(this));
+        router.post('/:table', this.getTableData.bind(this));
         // Return routes to app
         app.use(router);
     }
@@ -16,14 +16,14 @@ class SapiensDatabaseController {
     async getTableData(req: any, res: any) {
         const { table } = req.params;
         const where = this.handleFilters(req.body.filters);
-        const sapiensdb = new SapiensDatabaseService();
+        const sapiensdb = new DatabaseService();
         const queryResult = await sapiensdb.getTableData(table, where);
         return res.send(queryResult);
     }
 
     async nativeSql(req: any, res: any) {
         const { sql } = req.body;
-        const sapiensdb = new SapiensDatabaseService();
+        const sapiensdb = new DatabaseService();
         const queryResult = await sapiensdb.executeNativeSqlQuery(sql);
         return res.send(queryResult);
     }
@@ -40,4 +40,4 @@ class SapiensDatabaseController {
     }
 };
 
-export default SapiensDatabaseController;
+export default DatabaseController;
