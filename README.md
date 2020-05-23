@@ -8,7 +8,8 @@ Tem como objetivo possibilitar a execução de comandos SQL no banco de dados do
 
  - [NodeJS] (https://nodejs.org)
  - [Express] (https://expressjs.com)
- - [Knex] (http://knexjs.org)
+ - [Knex] (https://knexjs.org)
+ - [NodeSoap] (https://github.com/vpulim/node-soap) 
 
 ## Funcionalidades
 
