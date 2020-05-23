@@ -18,6 +18,7 @@ class SoapController {
         const { user, password, encryption } = req.headers;
         const payload = req.body;
 
+        // Valid all required params 
         if(!soapserver) 
             return res.status(400).send({ error: 'Server not provided.'});
         if(!module)
@@ -33,8 +34,11 @@ class SoapController {
         if(!encryption)
             return res.status(400).send({ error: 'Encryption type not provided.'});
         
-        const servicePath = `${soapserver}/g5-senior-services/${module}_Sync${service}?wsdl`;
+        // Prepare service name to WSDL
+        let serviceToWsdl = service.split('.').join('_');
+        const servicePath = `${soapserver}/g5-senior-services/${module}_Sync${serviceToWsdl}?wsdl`;
         
+        // Execute SOAP service
         const result = await SoapService.execute(servicePath, port, user, password, encryption, payload);
         return res.send(result);
     }

@@ -9,7 +9,7 @@ class SoapService {
                     if(err) {
                         resolve(`Error creating SOAP Client: ${err}`);
                     }    
-                        
+                      
                     const params = {
                         user: user, 
                         password: password,
