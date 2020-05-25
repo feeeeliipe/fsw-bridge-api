@@ -10,11 +10,15 @@ Tem como objetivo possibilitar a execução de comandos SQL no banco de dados do
  - [Express] (https://expressjs.com)
  - [Knex] (https://knexjs.org)
  - [NodeSoap] (https://github.com/vpulim/node-soap) 
+ - [Axios] (https://github.com/axios/axios)
 
 ## Funcionalidades
 
-### Autenticação 
- - POST (/auth/authenticate)
+### Autenticação com token Senior X
+ - POST (/auth/authenticateWithToken)
+
+### Autenticação com usuários G5
+ - POST (/auth/authenticateWithUser)
 
 ### Consulta de tabelas com filtro 
  - POST (/database/{tablename})
