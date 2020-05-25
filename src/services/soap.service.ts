@@ -2,14 +2,14 @@ const soap = require('soap');
 
 class SoapService {
     
-    execute(servicePath: string, port: string, user: string, password: string, encryption: string, payload: string) {
+    execute(servicePath: string, port: string, user: string, password: string, encryption: string, payload: any) {
         return new Promise((resolve, reject) => { 
             try {
                 soap.createClient(servicePath, function(err: any, client: any) {
                     if(err) {
-                        resolve(`Error creating SOAP Client: ${err}`);
-                    }    
-                      
+                        reject(`Error creating SOAP Client: ${err}`)
+                    }
+                    
                     const params = {
                         user: user, 
                         password: password,

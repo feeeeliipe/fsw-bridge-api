@@ -1,19 +1,38 @@
-
 const jwt = require('jsonwebtoken');
 import config from '../../config';
+import SoapService from './soap.service';
+import axios from 'axios';
 
 class AuthenticationService {
     
     // TODO 
-    authenticateWithG5User(user: string, password: string, encryption: string) {
-        // faz uma chamada para o serviço de autenticação da G5 e gera um token JWT
-        console.log(encryption);
-        return this.generateToken(`${user}${password}`);
+    async authenticateWithG5User(server: string, user: string, password: string, encryption: string) {
+        
+        const servicePath = `${server}/g5-senior-services/sapiens_SyncMCWFUsers?wsdl`;
+        const loginData = {
+            pmUserName: user, 
+            pmUserPassword: password, 
+            pmEncrypted: encryption
+        }
+        
+        const logged: any = await SoapService.execute(servicePath, 'AuthenticateJAAS', '', '', '', loginData)
+        if(logged.result.pmLogged == 0) {
+            return this.generateToken(`${user}${password}`);
+        } else {
+            return undefined;
+        }
+        
     }
 
-    authenticateWithSeniorXToken(token: string) {
-        // faz uma chamada para um endpoint da plataforma e se o token for válido, gera um token JWT
-        return this.generateToken(token);
+    async authenticateWithSeniorXToken(token: string) {
+        const platformUrl = 'https://platform.senior.com.br/t/senior.com.br/bridge/1.0/rest/platform/user/queries/getUser';
+        
+        return await axios.get(platformUrl, { headers: { Authorization : token } }).then(_ => {
+            return this.generateToken(token);
+        },
+        _ => {
+            return undefined;
+        });  
     }
 
     generateToken(id: string) {
@@ -23,7 +42,6 @@ class AuthenticationService {
         return token;
     }
     
-    // TO DO 
     isTokenValid(token: string) {
         return jwt.verify(token, config.jwtSecret, (err: any, _: any) => {
             if(err) {
