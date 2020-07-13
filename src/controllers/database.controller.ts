@@ -1,9 +1,12 @@
 import express from "express";
 import DatabaseService from "../services/database.service";
+import authenticationMiddleware from "../middlewares/authentication.middleware";
 
 class DatabaseController {
 
     constructor(app: any) {
+        // Define authenticationMiddleware 
+        app.use('/database', authenticationMiddleware.verifyToken);
         // Define routes
         const router = express.Router();
         router.post('/nativeSQL', this.nativeSql.bind(this));

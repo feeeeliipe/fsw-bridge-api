@@ -25,5 +25,8 @@
     "soap": "^0.31.0",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.0"
   }
 }

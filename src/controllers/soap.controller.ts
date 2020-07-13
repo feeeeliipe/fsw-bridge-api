@@ -6,9 +6,7 @@ class SoapController {
     constructor(app: any) {
         // Define routes
         const router = express.Router();
-        
         router.post('/execute', this.executeSoapService);
-        
         // Return routes to app
         app.use('/soap', router);
     }
