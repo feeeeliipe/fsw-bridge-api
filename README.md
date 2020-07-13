@@ -15,7 +15,13 @@ Tem como objetivo possibilitar a execução de comandos SQL no banco de dados do
 ## Funcionalidades
 
 ### Autenticação com token Senior X
- - POST (/auth/authenticateWithToken)
+Método: POST
+Endpoint: /auth/authenticateWithToken
+Parâmetros da Requisição:
+ - Headers:
+  - Authorization: Informar o token da Plataforma Senior X para autenticação
+
+A aplicação fará a autenticação na Plataforma Senior X através do token informado, caso o token informado seja do mesmo tenant configurado na aplicação, será retornado um token JWT para acesso aos recursos da aplicação.
 
 ### Autenticação com usuários G5
  - POST (/auth/authenticateWithUser)

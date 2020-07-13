@@ -2,12 +2,15 @@ const jwt = require('jsonwebtoken');
 import config from '../../config';
 import SoapService from './soap.service';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+// Busca as variáveis de ambiente 
+dotenv.config();
 
 class AuthenticationService {
     
-    // TODO 
     async authenticateWithG5User(server: string, user: string, password: string, encryption: string) {
-        
+
         const servicePath = `${server}/g5-senior-services/sapiens_SyncMCWFUsers?wsdl`;
         const loginData = {
             pmUserName: user, 
@@ -27,8 +30,14 @@ class AuthenticationService {
     async authenticateWithSeniorXToken(token: string) {
         const platformUrl = 'https://platform.senior.com.br/t/senior.com.br/bridge/1.0/rest/platform/user/queries/getUser';
         
-        return await axios.get(platformUrl, { headers: { Authorization : token } }).then(_ => {
-            return this.generateToken(token);
+        return await axios.get(platformUrl, { headers: { Authorization : token } }).then(res => {
+            const tenantNameFromToken = res.data.tenantName;
+            if(tenantNameFromToken == process.env.FSWBRIDGEAPI_TENANTNAME) {
+                return this.generateToken(token);
+            }
+            else {
+                return undefined;
+            }
         },
         _ => {
             return undefined;

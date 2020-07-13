@@ -1,13 +1,15 @@
 import knex from 'knex';
-import config from '../../config';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const knexdb = knex({
     client: 'oracledb',
     connection: {
-      host : config.database.host,
-      user : config.database.user,
-      password : config.database.password,
-      database : config.database.database
+      host : process.env.FSWBRIDGEAPI_DB_HOST,
+      user : process.env.FSWBRIDGEAPI_DB_USER,
+      password : process.env.FSWBRIDGEAPI_DB_PASS,
+      database : process.env.FSWBRIDGEAPI_DB_database
     }
 });
 
